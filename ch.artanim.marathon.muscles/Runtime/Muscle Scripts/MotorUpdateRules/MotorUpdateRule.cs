@@ -60,6 +60,10 @@ namespace MotorUpdate
         protected float GetActionTimeDelta(GameObject muscles)
         {
             DecisionRequester _decisionRequester = muscles.GetComponent<DecisionRequester>();
+            if (_decisionRequester == null) {
+                return Time.fixedDeltaTime;
+            }
+
             return _decisionRequester.TakeActionsBetweenDecisions ? Time.fixedDeltaTime : Time.fixedDeltaTime * _decisionRequester.DecisionPeriod;
         }
 
